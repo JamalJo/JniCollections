@@ -3,6 +3,7 @@ package com.haha.hellojni;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,9 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Example of a call to a native method
         TextView tv = findViewById(R.id.sample_text);
-        XJni xJni = new XJni();
-        tv.setText(xJni.getStr("456",3));
-//        tv.setText(stringFromJNI());
+        tv.setText("button");
+        final XJni xJni = new XJni();
+//        tv.setText(xJni.getStr("456",3));
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                xJni.displayHelloWorld();
+            }
+        });
+////        tv.setText(stringFromJNI());
     }
 
     /**

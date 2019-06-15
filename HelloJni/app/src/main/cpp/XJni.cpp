@@ -19,3 +19,13 @@ Java_com_haha_hellojni_XJni_getStr(JNIEnv *env, jobject instance, jstring s_, ji
     env->ReleaseStringUTFChars(s_, s);
     return env->NewStringUTF(newChars);
 }
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_haha_hellojni_XJni_displayHelloWorld(JNIEnv *env, jobject instance) {
+    char param[]="中文你好，i want to call callFromJNI3.";
+    jclass clz = env->GetObjectClass(instance);
+    jmethodID showToastMethod = env->GetMethodID(clz, "showToast", "(Ljava/lang/String;)V");
+    env->CallVoidMethod(instance, showToastMethod, env->NewStringUTF(param));
+}
